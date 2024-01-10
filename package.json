@@ -1,7 +1,7 @@
 {
   "name": "book-notes",
   "version": "1.0.0",
-  "description": "A web application for storing the data about the books I've already read",
+  "description": "On this web application, users are able to add books and review them.",
   "main": "index.js",
   "type": "module",
   "scripts": {
