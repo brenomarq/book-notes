@@ -1,0 +1,10 @@
+<%- include("partials/header.ejs") %>
+
+<h2>Select user</h2>
+
+<%# Generates a button for all users %>
+<form action="/users/select" method="post">
+    <% users.forEach((user) => { %>
+    <button type="submit" name="user" value="<%= user.id %>"> <%= user.username %> </button>
+    <% }) %>
+</form>

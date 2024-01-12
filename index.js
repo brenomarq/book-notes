@@ -6,6 +6,7 @@ import { password } from "./secret.js";
 // Initialize express application
 const app = express();
 const port = 3000;
+const LOCAL_URL =  "http://localhost:3000"
 
 // Connect to the database
 const db = new pg.Client({
@@ -21,20 +22,42 @@ db.connect();
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("public"));
 
-async function getData() {
+async function getData(id) {
     const result = await db.query(`
     SELECT title, author, cover, score, finish_date, text_content, username
     FROM reviews
     JOIN users ON user_id = users.id
-    JOIN books ON book_id = books.id`)
+    JOIN books ON book_id = books.id
+    WHERE user_id=$1`, [id]);
     return result.rows;
 }
 
+async function getUsers() {
+    const result = await db.query(`SELECT * FROM users`);
+    return result.rows;
+}
+
+async function getBooks() {
+    const result = await db.query(`SELECT * FROM books`);
+    return result.rows;
+}
+
+// CRUD
 app.get("/", async (req, res) => {
-    const data = await getData();
-    console.log(data);
-    res.sendStatus(200);
-})
+    const users = await getUsers();
+    res.render("index.ejs", { users: users });
+});
+
+app.post("/users/select", async (req, res) => {
+    const selectedId = parseInt(req.body.user);
+
+    try {
+        const data = await getData(selectedId);
+        res.render("home.ejs", { books: data });
+    } catch (err) {
+        console.log(err);
+    }
+});
 
 app.listen(port, () => {
     console.log(`Server running on port 3000.`)

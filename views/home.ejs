@@ -1,0 +1,13 @@
+<%- include("partials/header.ejs") %>
+
+<hr>
+<h2>My books</h2>
+
+<form action="/selectBook">
+    <% books.forEach((book) => { %>
+        <h3> <%= book.title %> </h3>
+        <h4> <%= book.author %> </h4>
+        <p> Score: <%= book.score %>/10 </p>
+        <p> Review: <%= book.text_content %> </p>
+    <% }) %>
+</form>
