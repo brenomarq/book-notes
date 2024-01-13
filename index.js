@@ -1,6 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
+import axios from "axios";
 import { password } from "./secret.js";
 
 // Initialize express application
@@ -24,59 +25,43 @@ app.use(express.static("public"));
 
 let currentUserId = 0; // 0 is default before entering the data
 
-async function getData(id) {
-    const result = await db.query(`
-    SELECT title, author, cover, score, finish_date, text_content, username
-    FROM reviews
-    JOIN users ON user_id = users.id
-    JOIN books ON book_id = books.id
-    WHERE user_id=$1`, [id]);
-    return result.rows;
-}
-
-async function getUsers() {
-    const result = await db.query(`SELECT * FROM users`);
-    return result.rows;
-}
-
-async function getBooks() {
-    const result = await db.query(`SELECT * FROM books`);
-    return result.rows;
-}
-
 app.get("/", async (req, res) => {
-    const users = await getUsers();
-    res.render("index.ejs", { users: users });
+    const users = await axios.get(`${LOCAL_URL}/users`);
+    res.render("index.ejs", { users: users.data });
 });
 
 app.post("/home", async (req, res) => {
-    const selectedId = parseInt(req.body.user);
+    const userId = parseInt(req.body.user);
 
     try {
-        const data = await getData(selectedId);
-        currentUserId = selectedId;
-        res.render("home.ejs", { books: data });
+        const books = await axios.get(`${LOCAL_URL}/reviews/${userId}`);
+        currentUserId = userId;
+        res.render("home.ejs", { books: books.data });
     } catch (err) {
-        console.log(err.message);
-        res.redirect("/");
+        console.log(err);
     }
 });
 
-app.post("/selectBook", async (req, res) => {
-    const book = req.body.book;
+app.post("/new", async (req, res) => {
+    switch (req.body.new) {
+        case "user":
+            console.log(1);
+            break;
 
-    if (book === "new") {
-        res.render("new.ejs");
-    } else {
+        case "book":
+            console.log(2);
+            break;
 
+        case "review":
+            console.log(3);
+            break;
+
+        default:
+            console.log("What???")
+            break;
     }
-});
-
-app.post("/addBook", (req, res) => {
-    const data = req.body;
-    console.log(data);
 });
 
 app.listen(port, () => {
-    console.log(`Server running on port 3000.`)
+    console.log(`Server running on port ${port}.`);
 });
