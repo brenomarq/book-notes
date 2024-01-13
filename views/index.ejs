@@ -3,7 +3,7 @@
 <h2>Select user</h2>
 
 <%# Generates a button for all users %>
-<form action="/users/select" method="post">
+<form action="/home" method="post">
     <% users.forEach((user) => { %>
     <button type="submit" name="user" value="<%= user.id %>"> <%= user.username %> </button>
     <% }) %>
