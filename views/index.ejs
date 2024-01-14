@@ -7,4 +7,7 @@
     <% users.forEach((user) => { %>
     <button type="submit" name="user" value="<%= user.id %>"> <%= user.username %> </button>
     <% }) %>
+    <button type="submit" name="user" value="new"> New User </button>
 </form>
+
+<%- include("partials/footer.ejs") %>
