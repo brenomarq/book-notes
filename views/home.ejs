@@ -10,5 +10,7 @@
         <p> Score: <%= book.score %>/10 </p>
         <p> Review: <%= book.text_content %> </p>
     <% }) %>
-    <button type="submit" name="book" value="new"> Add new book </button>
+</form>
+<form action="/new" method="post">
+    <button type="submit" name="new" value="book"> New Book </button>
 </form>
