@@ -19,6 +19,7 @@ db.connect();
 
 // middlewares
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.json());
 
 // Users HTTP Methods
 // This one list all of the existing users
@@ -36,11 +37,11 @@ app.get("/users", async (req, res) => {
 app.post("/users", async (req, res) => {
     try {
         const newUser = await db.query(`INSERT INTO users (username) VALUES ($1) RETURNING *`,
-        [req.query.name]);
+        [req.body.username]);
         res.json(newUser.rows);
     } catch (err) {
         console.log(err);
-        res.json({ error: "It was not possible to create a new user" });
+        res.status(400).json({ error: "It was not possible to create a new user" });
     }
 });
 

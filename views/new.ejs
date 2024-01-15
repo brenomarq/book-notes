@@ -1,3 +1,28 @@
 <%- include("partials/header.ejs") %>
 
+<%# This form is rendered if the user wants to add a new user to the database %>
+<% if (locals.user) { %>
+    <form action="/createUser" method="post">
+        <label for="username"> Username: </label>
+        <input type="text" name="username" id="username" required>
+        <button type="submit"> Add User </button>
+    </form>
+<% } %>
+
+<% if (locals.book) { %>
+    <form action="/createBook" method="post">
+        <label for="title">Title:</label>
+        <input type="text" name="title" id="title" required>
+        <label for="author">Author:</label>
+        <input type="text" name="author" id="author" required>
+        <label for="score"> Score: </label>
+        <input type="number" name="score" id="score" min="0" max="10">
+        <label for="finish"> When did you finish it? </label>
+        <input type="date" name="finish" id="finish">
+        <label for="opinion"> What are your thoughts? </label>
+        <textarea name="opinion" id="opinion" cols="30" rows="10"></textarea>
+        <button type="submit"> Add Book </button>
+    </form>
+<% } %>
+
 <%- include("partials/footer.ejs") %>
