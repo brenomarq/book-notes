@@ -1,0 +1,91 @@
+@import url(
+    "https://fonts.googleapis.com/css2?family=Lemon&family=Montserrat:ital,wght@0,300;0,400;1,400&family=Pacifico&display=swap"
+);
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+/*Background image for all pages*/
+#background {
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    z-index: -1;
+    opacity: 0.5;
+}
+
+/*Header*/
+#header {
+    width: 90%;
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    padding: 0 5%;
+}
+
+.header-title {
+    display: flex;
+    align-items: center;
+    height: 20vh;
+    color: #713ABE;
+    font-family: "Lemon", serif;
+    font-size: 3rem;
+}
+
+.header-title > img {
+    margin-left: 10px;
+    height: 80px;
+}
+
+.create-user {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    height: 20vh;
+}
+
+.btn { /*This is applied for all the buttons */
+    background-color: #5B0888;
+    color: #FFF;
+    font-family: "Montserrat", serif;
+    padding: 15px 35px;
+    border: 0;
+    border-radius: 3rem;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+.btn:hover {
+    background-color: #713ABE;
+}
+
+/*User selection page*/
+#user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 5%;
+    width: 90%;
+    height: 75vh;
+    max-height: fit-content;
+    background-color: #E5CFF7;
+    border-radius: 4rem;
+}
+
+#user > h2 {
+    font-family: "Pacifico", cursive;
+    font-size: 2.5rem;
+    color: #5B0888;
+    margin-top: 20px;
+}
+
+.select-user {
+    display: flex;
+    flex-direction: column;
+}
+
+.user-btn {
+    padding: 15px 100px;
+    margin: 5px 0;
+}

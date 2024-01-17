@@ -1,15 +1,20 @@
 <%- include("partials/header.ejs") %>
 
-<h2>Select user</h2>
+    <form class="create-user" action="/new" method="post">
+        <button type="submit" class="btn" name="new" value="user"> Create User </button>
+    </form>
+</section>
 
-<%# Generates a button for all users %>
-<form action="/home" method="post">
-    <% users.forEach((user) => { %>
-    <button type="submit" name="user" value="<%= user.id %>"> <%= user.username %> </button>
-    <% }) %>
-</form>
-<form action="/new" method="post">
-    <button type="submit" name="new" value="user"> New User </button>
-</form>
+<%# This is the page for selecting the user %>
+<section id="user">
+    <h2>Select user</h2>
+
+    <%# Generates a button for all users %>
+    <form class="select-user" action="/home" method="post">
+        <% users.forEach((user) => { %>
+        <button type="submit" class="user-btn btn" name="user" value="<%= user.id %>"> <%= user.username %> </button>
+        <% }) %>
+    </form>
+</section>
 
 <%- include("partials/footer.ejs") %>
