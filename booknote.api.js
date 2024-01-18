@@ -97,7 +97,8 @@ app.get("/reviews/:id", async (req, res) => {
         FROM reviews
         JOIN users ON users.id=user_id
         JOIN books ON books.id=book_id
-        WHERE user_id=$1`, [userId]);
+        WHERE user_id=$1
+        ORDER BY book_id ASC`, [userId]);
         res.json(reviews.rows);
     } catch (err) {
         console.log(err);

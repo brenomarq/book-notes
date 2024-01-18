@@ -67,7 +67,7 @@
     align-items: center;
     margin: 0 5%;
     width: 90%;
-    height: 75vh;
+    min-height: 75vh;
     max-height: fit-content;
     background-color: #E5CFF7;
     border-radius: 4rem;
@@ -88,4 +88,141 @@
 .user-btn {
     padding: 15px 100px;
     margin: 5px 0;
+}
+
+/*My books page (home.ejs)*/
+.add-new-book {
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+#my-books {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin: 0 5%;
+    width: 90%;
+    min-height: 75vh;
+    max-height: fit-content;
+    background-color: #E5CFF7;
+    border-radius: 4rem;
+}
+
+.book {
+    margin: 30px;
+}
+
+.cover {
+    height: 100px;
+    width: 75px;
+    float: left;
+    margin-right: 10px;
+    border-radius: 10px;
+}
+
+.book-info {
+    font-family: "Pacifico", cursive;
+    color: #5B0888;
+    font-size: 1.2rem;
+}
+
+.book-review {
+    font-family: "Montserrat", serif;
+    font-size: 1.1rem;
+    text-align: justify;
+}
+
+.book-review > p {
+    margin-bottom: 5px;
+}
+
+/*Create user page (new.ejs)*/
+#create-user {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 5%;
+    width: 90%;
+    height: 75vh;
+    background-color: #E5CFF7;
+    border-radius: 4rem;
+}
+
+#create-user > h2 {
+    font-family: "Pacifico", cursive;
+    font-size: 2.5rem;
+    color: #5B0888;
+    margin-top: 20px;
+}
+
+.new-user {
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    font-family: "Montserrat", serif;
+}
+
+.new-user > * {
+    margin: 5px 0;
+}
+
+input[type=text] {
+    width: 280px;
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: 0;
+}
+
+.new-user > button {
+    margin-top: 20px;
+    align-self: center;
+}
+
+/*Add book review page (new.ejs)*/
+#new-book {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 5%;
+    margin-bottom: 10px;
+    width: 90%;
+    min-height: 75vh;
+    max-height: fit-content;
+    background-color: #E5CFF7;
+    border-radius: 4rem;
+}
+
+#new-book > h2 {
+    font-family: "Pacifico", cursive;
+    font-size: 2.5rem;
+    color: #5B0888;
+    margin-top: 20px;
+}
+
+.add-book {
+    display: flex;
+    flex-direction: column;
+    font-family: "Montserrat", serif;
+}
+
+.add-book > * {
+    margin: 5px 0;
+}
+
+input[type=number],
+input[type=date] {
+    width: 280px;
+    height: 30px;
+    padding: 0 10px;
+    border-radius: 5px;
+    border: 0;
+}
+
+#opinion {
+    border-radius: 10px;
+}
+
+.add-btn {
+    align-self: center;
 }

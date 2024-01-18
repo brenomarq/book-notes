@@ -59,7 +59,6 @@ app.post("/home", async (req, res) => {
 });
 
 app.post("/new", async (req, res) => {
-    console.log(currentUserId);
     switch (req.body.new) {
         case "user":
             res.render("new.ejs", { user: "user" });
