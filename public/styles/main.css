@@ -136,6 +136,28 @@
     margin-bottom: 5px;
 }
 
+.options {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+}
+
+.no-btn {
+    margin: 10px 5px;
+    background-color: #E5CFF7;
+    color: #5B0888;
+    border: 0;
+    cursor: pointer;
+}
+
+#edit:hover {
+    color: greenyellow;
+}
+
+#del:hover {
+    color: red;
+}
+
 /*Create user page (new.ejs)*/
 #create-user {
     display: flex;

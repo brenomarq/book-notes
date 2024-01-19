@@ -100,7 +100,6 @@ app.post("/createBook", async (req, res) => {
                 finish_date: req.body.finish,
                 text_content: req.body.opinion,
             });
-            console.log("Deu certo");
             res.redirect("/home");
 
         } else {
@@ -123,6 +122,38 @@ app.post("/createBook", async (req, res) => {
     } catch (err) {
         console.log(err);
     }
+});
+
+app.post("/options", async (req, res) => {
+    // Checks the option selected by the user (Edit or Delete)
+    if (req.body.edit) {
+
+        try {
+        const bookId = parseInt(req.body.edit);
+
+        const reviews = await axios.get(`${LOCAL_URL}/reviews/${currentUserId}`);
+        const selectedReview = reviews.data.find((review) => review.book_id === bookId);
+
+        res.render("options.ejs", { edit: selectedReview });
+        } catch (err) {
+            console.log(err);
+        }
+    } else {
+        const delIds = {
+            book: parseInt(req.body.delete),
+            user: currentUserId,
+        };
+
+        res.render("options.ejs", { del: delIds });
+    }
+});
+
+app.post("/edit", async (req, res) => {
+    console.log("Editing");
+});
+
+app.post("/delete", async (req, res) => {
+    console.log("Deleting");
 });
 
 app.listen(port, () => {
