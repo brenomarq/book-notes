@@ -69,7 +69,6 @@ app.post("/new", async (req, res) => {
             break;
 
         default:
-            console.log("What???")
             break;
     }
 });
@@ -134,7 +133,10 @@ app.post("/options", async (req, res) => {
         const reviews = await axios.get(`${LOCAL_URL}/reviews/${currentUserId}`);
         const selectedReview = reviews.data.find((review) => review.book_id === bookId);
 
-        res.render("options.ejs", { edit: selectedReview });
+        res.render("options.ejs", {
+            edit: selectedReview,
+            userId: currentUserId,
+         });
         } catch (err) {
             console.log(err);
         }
@@ -149,11 +151,34 @@ app.post("/options", async (req, res) => {
 });
 
 app.post("/edit", async (req, res) => {
-    console.log("Editing");
+    try {
+        await axios.put(`${LOCAL_URL}/reviews`, req.body);
+        res.redirect("/home");
+    } catch (err) {
+        console.log(err);
+    }
 });
 
 app.post("/delete", async (req, res) => {
-    console.log("Deleting");
+    try {
+        // Checks if the user really wants to delete the review
+        switch (req.body.option) {
+            case "del":
+                await axios.delete(`${LOCAL_URL}/reviews`, req.body);
+                res.redirect("/home");
+                break;
+
+            case "cancel":
+                res.redirect("/home");
+                break;
+
+            default:
+                break;
+        }
+
+    } catch (err) {
+        console.log(err);
+    }
 });
 
 app.listen(port, () => {

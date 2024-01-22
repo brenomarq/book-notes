@@ -4,10 +4,42 @@
 
 <%# This is rendered when the user decides to update a review %>
 <% if (locals.edit) { %>
+    <section id="edit-book">
+        <h2> Update your review </h2>
+        <div class="selected-book">
+            <div class="s-cover">
+                <img src="<%= edit.cover || "images/no-image.avif" %>" alt="Book's cover">
+            </div>
+            <div class="s-info">
+                <h3> <%= edit.title %> </h3>
+                <h4> <%= edit.author %> </h4>
+            </div>
+        </div>
+        <form class="edit-book" action="/edit" method="post">
+            <label for="score"> Score: </label>
+            <input type="number" name="score" id="score" value="<%= edit.score %>" min="0" max="10">
+            <label for="finish"> When did you finish it? </label>
+            <input type="date" name="finish" id="finish" value="<%= edit.finish_date %>">
+            <label for="opinion"> What are your thoughts? </label>
+            <textarea name="opinion" id="opinion" cols="30" rows="10"> <%= edit.text_content %> </textarea>
+            <input type="hidden" name="user_id" value="<%= userId %>">
+            <input type="hidden" name="book_id" value="<%= edit.book_id %>">
+            <button type="submit" class="btn add-btn"> Update </button>
+        </form>
+    </section>
 <% } %>
 
 <%# This is rendered when the user wants to delete a review %>
 <% if (locals.del) { %>
+    <section id="del-review">
+        <h2> Are you sure you want to delete it? </h2>
+        <form class="del-review" action="/delete" method="post">
+            <input type="hidden" name="user" value="<%= del.user %>">
+            <input type="hidden" name="book" value="<%= del.book %>">
+            <button type="submit" id="delete" class="del-btn" name="option" value="del"> Delete </button>
+            <button type="submit" id="cancel" class="del-btn" name="option" value="cancel"> Cancel </button>
+        </form>
+    </section>
 <% } %>
 
 <%- include("partials/footer.ejs") %>

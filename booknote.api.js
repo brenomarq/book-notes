@@ -127,6 +127,38 @@ app.post("/reviews", async (req, res) => {
     }
 });
 
+// Updates an existing review
+app.put("/reviews", async (req, res) => {
+    const bookId = parseInt(req.body.book_id);
+    const userId = parseInt(req.body.user_id);
+
+    try {
+        const updatedReview = await db.query(`
+        UPDATE reviews
+        SET score=$1, finish_date=$2, text_content=$3
+        WHERE user_id=$4 AND book_id=$5
+        RETURNING *`, [req.body.score, req.body.finish, req.body.opinion, userId, bookId]);
+        res.json(updatedReview.rows);
+    } catch (err) {
+        console.log(err);
+        res.status(400).json({ error: "Could not update the review, try again." });
+    }
+});
+
+// Deletes an existing review
+app.delete("/reviews", async (req, res) => {
+    const bookId = parseInt(req.body.book);
+    const userId = parseInt(req.body.user);
+
+    try {
+        await db.query(`DELETE FROM reviews WHERE book_id=$1 AND user_id=$2`,
+        [bookId, userId]);
+        res.json({ message: "Review deleted successfully!"});
+    } catch (err) {
+        res.status(400).json({ error: "Coult not delete the review, try again." });
+    }
+});
+
 app.listen(port, () => {
     console.log(`Server running successfully on port ${port}`);
 });

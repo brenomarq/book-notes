@@ -248,3 +248,106 @@ input[type=date] {
 .add-btn {
     align-self: center;
 }
+
+/*Edit review page (options.ejs)*/
+#edit-book {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0 5%;
+    margin-bottom: 10px;
+    width: 90%;
+    min-height: 75vh;
+    max-height: fit-content;
+    background-color: #E5CFF7;
+    border-radius: 4rem;
+}
+
+#edit-book > h2 {
+    font-family: "Pacifico", cursive;
+    font-size: 2.5rem;
+    color: #5B0888;
+    margin-top: 20px;
+}
+
+.edit-book {
+    display: flex;
+    flex-direction: column;
+    font-family: "Montserrat", serif;
+}
+
+.edit-book > * {
+    margin: 5px 0;
+}
+
+.selected-book {
+    display: flex;
+}
+
+.s-cover {
+    height: fit-content;
+    width: fit-content;
+    overflow: hidden;
+}
+
+.s-cover > img {
+    margin: 10px;
+    height: 200px;
+    border-radius: 15px;
+}
+
+.s-info {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: "Lemon", sans-serif;
+    color: #713ABE;
+}
+
+/*Delete review page (options.ejs)*/
+#del-review {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 0 5%;
+    margin-bottom: 10px;
+    width: 90%;
+    min-height: 75vh;
+    max-height: fit-content;
+    background-color: #E5CFF7;
+    border-radius: 4rem;
+}
+
+#del-review > h2 {
+    font-family: "Pacifico", cursive;
+    font-size: 1.75rem;
+    color: #5B0888;
+    margin-top: 20px;
+}
+
+.del-review {
+    margin-top: 10px;
+}
+
+.del-btn {
+    font-family: "Montserrat", serif;
+    padding: 10px 30px;
+    margin-right: 5px;
+    border: 0;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+#delete {
+    color: red;
+}
+
+#delete:hover {
+    color: #FFF;
+    background-color: red;
+}
+
+#cancel:hover {
+    background-color: rgb(255, 255, 255, 0.3);
+}
