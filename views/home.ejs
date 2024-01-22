@@ -7,17 +7,21 @@
 
 <section id="my-books">
     <%# This renders a div block for each book listen on the database. %>
+    <% if (books.length !== 0) { %>
     <% books.forEach((book) => { %>
         <div class="book">
             <% const cover = book.cover || "images/no-image.avif" %>
             <div class="book-info">
-                <img class="cover" src="<%= cover || "images/no-image.avif" %> " alt="Cover of the book">
-                <h2> <%= book.title %> </h3>
-                <h3> <%= book.author %> </h4>
+                <div class="book-cover">
+                    <img class="cover" src="<%= cover || "images/no-image.avif" %> " alt="Cover of the book">
+                </div>
+                <div class="book-text">
+                    <h2> <%= book.title %> </h3>
+                    <h3> <%= book.author %> </h4>
+                </div>
             </div>
             <div class="book-review">
-                <p> Date read: <%= book.finish_date || "uninformed" %> </p>
-                <p> Score: <%= book.score %>/10 </p>
+                <p> Date read: <%= book.finish_date || "uninformed" %> / Score: <%= book.score %>/10 </p>
                 <p> "<%= book.text_content %>" </p>
             </div>
             <div class="book-options">
@@ -37,6 +41,15 @@
             </div>
         </div>
     <% }) %>
+    <% } else { %>
+        <section id="no-entries">
+            <h2> No entries ☹️ </h2>
+            <h3> Try adding a new book review! </h3>
+            <form action="/new" method="post">
+                <button type="submit" id="book-btn" class="btn" name="new" value="book"> Add new book </button>
+            </form>
+        </section>
+    <% } %>
 </section>
 
 <%- include("partials/footer.ejs") %>

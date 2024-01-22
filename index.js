@@ -105,6 +105,7 @@ app.post("/createBook", async (req, res) => {
             const newBook = await axios.post(`${LOCAL_URL}/books`, {
                 title: req.body.title,
                 author: req.body.author,
+                cover: req.body.cover,
             });
             bookId = parseInt(newBook.data[0].id);
 
