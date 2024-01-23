@@ -60,7 +60,7 @@ app.delete("/users/:id", async (req, res) => {
 });
 
 // Books HTTP methods
-// List all the reviewed books by a certain user
+// List all the stored books
 app.get("/books", async (req, res) => {
     try {
         const books = await db.query(`
@@ -72,7 +72,7 @@ app.get("/books", async (req, res) => {
     }
 });
 
-// Creates a new record of a read book
+// Adds a new book
 app.post("/books", async (req, res) => {
     try {
         const newBook = await db.query(`
