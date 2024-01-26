@@ -1,7 +1,7 @@
 import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
-import { password } from "./secret.js";
+import { password } from "./secret.js"; // You can delete this line
 
 // Native API
 const app = express();
@@ -11,8 +11,8 @@ const port = 4000;
 const db = new pg.Client({
     user: "postgres",
     host: "localhost",
-    database: "book_notes",
-    password: password,
+    database: "book_notes", // Here you can place the name you gave to the database
+    password: password, // Here you can place your postgres password
     port: 5432,
 })
 db.connect();

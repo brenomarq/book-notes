@@ -1,3 +1,5 @@
+/*Create a new database, then paste the following commands on pgAdmin*/
+
 CREATE TABLE users (
     id SERIAL PRIMARY KEY,
     username VARCHAR(25) NOT NULL

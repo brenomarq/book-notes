@@ -2,7 +2,7 @@ import express from "express";
 import bodyParser from "body-parser";
 import pg from "pg";
 import axios from "axios";
-import { password } from "./secret.js";
+import { password } from "./secret.js"; // You can delete this line
 
 // Initialize express application
 const app = express();
@@ -13,8 +13,8 @@ const LOCAL_URL = "http://localhost:4000"
 const db = new pg.Client({
     user: "postgres",
     host: "localhost",
-    database: "book_notes",
-    password: password,
+    database: "book_notes", // Here you can place the name you gave to the database
+    password: password, // Here you can place your postgres password
     port: 5432,
 })
 db.connect();
@@ -101,6 +101,7 @@ app.post("/createBook", async (req, res) => {
             });
             res.redirect("/home");
 
+        // If it doesn't exist, it creates a new record on the database.
         } else {
             const newBook = await axios.post(`${LOCAL_URL}/books`, {
                 title: req.body.title,
